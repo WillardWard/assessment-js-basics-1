@@ -6,25 +6,29 @@ const reader = readline.createInterface({
   output: process.stdout,
 });
 
-reader.question("Welcome to the Password Validator!\nPlease enter a password at least 10 characters long\n", function(input){
+reader.question("\nWelcome to the Password Validator!\nPlease enter a password at least 10 characters long\n\t(without spaces)\n", function(input){
     userPassword = input
-
-    if (input.length >= 10){
-        console.log('10 characters, good!')
-    }else if (input.length < 10){
-        console.log('I said 10!')
-    }
 
     const space = ' '
 
-    if (userPassword.includes(space)){
-        console.log('No spaces please!')
-    }
+// checks user input for string length and spaces
+        if (input.length < 10 || userPassword.includes(space)){
+            console.log("\nThat password won't cut it!")
+        }else if (input.length >= 10){
+            console.log("\nNow that's a strong password!")
+        }
 
-    // console.log(userPassword)
+// prints message if spaces are input
+        if (userPassword.includes(space)){
+            console.log('No spaces please!')
+        }
 
+// prints message if input is less than 10 characters
+        if (input.length < 10){
+            console.log("Your password must be at least 10 characters!")
+        }
 
+        reader.close()
 
-    reader.close()
 
 });
